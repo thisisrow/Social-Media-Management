@@ -1,18 +1,22 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import axios from 'axios';
+
+const API_BASE_URL = 'https://shortlisting-task-1.onrender.com/api';
 
 interface User {
   id: string;
+  username: string;
   email: string;
-  name: string;
   instagramConnected: boolean;
   instagramUsername?: string;
+  token?: string;
 }
 
 interface AuthContextType {
   user: User | null;
   loading: boolean;
-  login: (email: string, password: string) => Promise<void>;
-  signup: (email: string, password: string, name: string) => Promise<void>;
+  login: (username: string, password: string) => Promise<void>;
+  signup: (username: string, email: string, password: string) => Promise<void>;
   logout: () => void;
   connectInstagram: (username: string) => Promise<void>;
 }
@@ -32,34 +36,57 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setLoading(false);
   }, []);
 
-  const login = async (email: string, password: string) => {
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    const mockUser: User = {
-      id: '1',
-      email,
-      name: email.split('@')[0],
-      instagramConnected: false,
-    };
-    
-    setUser(mockUser);
-    localStorage.setItem('user', JSON.stringify(mockUser));
+  const login = async (username: string, password: string) => {
+    try {
+      const response = await axios.post(`${API_BASE_URL}/users/login`, {
+        username,
+        password,
+      });
+      
+      const userData: User = {
+        id: response.data._id,
+        username: response.data.username,
+        email: response.data.email,
+        instagramConnected: false,
+        token: response.data.token
+      };
+      
+      setUser(userData);
+      localStorage.setItem('user', JSON.stringify(userData));
+      
+      // Set the default Authorization header for future requests
+      axios.defaults.headers.common['Authorization'] = `Bearer ${userData.token}`;
+    } catch (error) {
+      console.error('Login error:', error);
+      throw error;
+    }
   };
 
-  const signup = async (email: string, password: string, name: string) => {
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    const mockUser: User = {
-      id: '1',
-      email,
-      name,
-      instagramConnected: false,
-    };
-    
-    setUser(mockUser);
-    localStorage.setItem('user', JSON.stringify(mockUser));
+  const signup = async (username: string, email: string, password: string) => {
+    try {
+      const response = await axios.post(`${API_BASE_URL}/users/register`, {
+        username,
+        email,
+        password,
+      });
+      
+      const userData: User = {
+        id: response.data._id,
+        username: response.data.username,
+        email: response.data.email,
+        instagramConnected: false,
+        token: response.data.token
+      };
+      
+      setUser(userData);
+      localStorage.setItem('user', JSON.stringify(userData));
+      
+      // Set the default Authorization header for future requests
+      axios.defaults.headers.common['Authorization'] = `Bearer ${userData.token}`;
+    } catch (error) {
+      console.error('Signup error:', error);
+      throw error;
+    }
   };
 
   const logout = () => {
