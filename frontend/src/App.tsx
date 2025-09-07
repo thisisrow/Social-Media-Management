@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { PostProvider } from './contexts/PostContext';
 import LoginPage from './components/auth/LoginPage';
 import Dashboard from './components/dashboard/Dashboard';
+import PrivacyPolicy from './components/legal/PrivacyPolicy';
 import { Toaster } from './components/ui/Toaster';
 
 function AppContent() {
@@ -32,9 +34,14 @@ function AppContent() {
 
 function App() {
   return (
-    <AuthProvider>
-      <AppContent />
-    </AuthProvider>
+    <Router>
+      <AuthProvider>
+        <Routes>
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/*" element={<AppContent />} />
+        </Routes>
+      </AuthProvider>
+    </Router>
   );
 }
 

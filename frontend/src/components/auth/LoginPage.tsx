@@ -117,7 +117,7 @@ export default function LoginPage() {
           </button>
         </form>
 
-        <div className="mt-6 text-center">
+        <div className="mt-6 text-center space-y-4">
           <button
             onClick={() => setIsLogin(!isLogin)}
             className="text-purple-600 hover:text-purple-700 font-medium"
@@ -127,6 +127,15 @@ export default function LoginPage() {
               : "Already have an account? Sign in"
             }
           </button>
+          <div className="text-sm text-gray-500">
+            By continuing, you agree to our{' '}
+            <a
+              href="/privacy-policy"
+              className="text-purple-600 hover:text-purple-700 underline"
+            >
+              Privacy Policy
+            </a>
+          </div>
         </div>
       </div>
     </div>
