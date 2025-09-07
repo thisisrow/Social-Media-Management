@@ -16,7 +16,7 @@ export default function PrivacyPolicy() {
                 <ul className="list-disc pl-5 mt-2 space-y-1">
                   <li>Instagram username and account ID</li>
                   <li>Instagram posts and post IDs</li>
-                  <li>Comments and messages associated with posts</li>
+                  <li> Context that you will provide  associated with post  </li>
                 </ul>
               </li>
               <li>Any information you provide when contacting our support team</li>
@@ -51,7 +51,6 @@ export default function PrivacyPolicy() {
             <p>We do not share your personal data with third parties except:</p>
             <ul className="list-disc pl-5 mt-2 space-y-2">
               <li>Instagram API, strictly for providing the automation features you enable</li>
-              <li>Service providers who help us operate the platform (e.g., hosting, authentication, analytics)</li>
             </ul>
             <p className="mt-2">These providers are bound by confidentiality and data protection agreements.</p>
           </section>
@@ -81,7 +80,7 @@ export default function PrivacyPolicy() {
           <section>
             <h2 className="text-xl font-semibold mb-3 text-gray-800">8. Contact Us</h2>
             <p>If you have any questions about this Privacy Policy or wish to exercise your rights, please contact us at:</p>
-            <p className="mt-2">Email: <a href="mailto:privacy@yourdomain.com" className="text-blue-600">privacy@yourdomain.com</a></p>
+            <p className="mt-2">Email: <a href="mailto:sahilgame285@gmail.com" className="text-blue-600">sahilgame285@gmail.com</a></p>
           </section>
 
           <section className="mt-8 pt-8 border-t border-gray-200">
