@@ -3,7 +3,7 @@ import axios from 'axios';
 import { io, Socket } from 'socket.io-client';
 import { Heart, MessageCircle, Bot, NutOff as BotOff } from 'lucide-react';
 
-const API_BASE = 'https://shortlisting-task-1.onrender.com';
+const API_BASE = 'https://shortlisting-task-1-ten.vercel.app';
 
 /** ----- Types matching server /posts ----- */
 type Comment = {
