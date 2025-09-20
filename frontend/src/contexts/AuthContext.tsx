@@ -7,7 +7,6 @@ interface User {
   id: string;
   username: string;
   email: string;
-  instagramConnected: boolean;
   instagramUsername?: string;
   token?: string;
 }
@@ -47,7 +46,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         id: response.data._id,
         username: response.data.username,
         email: response.data.email,
-        instagramConnected: false,
         token: response.data.token
       };
       
@@ -74,7 +72,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         id: response.data._id,
         username: response.data.username,
         email: response.data.email,
-        instagramConnected: false,
         token: response.data.token
       };
       
@@ -101,7 +98,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (user) {
       const updatedUser = {
         ...user,
-        instagramConnected: true,
         instagramUsername: username,
       };
       setUser(updatedUser);
