@@ -1,6 +1,7 @@
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { PostProvider } from './contexts/PostContext';
 import LoginPage from './components/auth/LoginPage';
 import Dashboard from './components/dashboard/Dashboard';
 import PrivacyPolicy from './components/legal/PrivacyPolicy';
@@ -20,7 +21,9 @@ function AppContent() {
   return (
     <div className="min-h-screen bg-gray-50">
       {user ? (
+        <PostProvider>
           <Dashboard />
+        </PostProvider>
       ) : (
         <LoginPage />
       )}

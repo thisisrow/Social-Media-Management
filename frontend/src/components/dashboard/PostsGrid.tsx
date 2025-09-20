@@ -10,8 +10,8 @@ type Comment = {
   id: string;
   text: string;
   username: string;
-  timestamp: string;          // ISO
-  isMine?: boolean;           // server sets this based on IG_USERNAME
+  timestamp: string;          
+  isMine?: boolean;           
 };
 
 type Post = {
